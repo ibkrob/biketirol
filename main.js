@@ -73,4 +73,10 @@ L.control.fullscreen().addTo(map);
 // GPX Track Layer beim Laden anzeigen
 overlays.gpx.addTo(map);
 
+
+
 // GPX Track Layer implementieren
+var gpx = 'data/gps-daten-etappe-14-westendorf-alpbach.gpx'; 
+new L.GPX(gpx, {async: true}).on('loaded', function(e) {
+  map.fitBounds(e.target.getBounds());
+}).addTo(map);
