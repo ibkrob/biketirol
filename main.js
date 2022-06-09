@@ -95,10 +95,21 @@ polyline_options:{
 gpxTrack.on("loaded", function (evt){
     //console.log ("loaded gpx event: ", evt);
     map.fitBounds(evt.target.getBounds())
-})
 
-/*new L.GPX(gpx, {
-    async: true
-}).on('loaded', function (e) {
-    map.fitBounds(e.target.getBounds());
-}).addTo(map)*/
+
+let gpxLayer = evt.target;
+map.fitBounds(gpxLayer.getBounds());
+
+let popup = `
+<h3> ${gpxLayer.get_name()}</h3>
+<ul>
+    <li>Streckenlänge ${gpxLayer.get_distance()/1000} m </li>
+    <li>Höchster Punkt: ${gpxLayer.get_elevation_max()} (m)</li>
+    <li>Niedrigster Punkt: ${gpxLayer.get_elevation_min()} (m)</li>
+    <li>Höhenmeter Bergauf: ${gpxLayer.get_elevation_gain().toFixed()} (m)</li>
+    <li>Höhenmeter Bergab: ${gpxLayer.get_elevation_loss().toFixed()} (m)</li>
+
+</ul>
+`;
+gpxLayer.bindPopup(popup);
+})
