@@ -87,7 +87,7 @@ marker_options:{
 },
 polyline_options:{
     color:"black",
-    dashArray:[2,5]
+    dashArray:[2,5],
 }
 
 }).addTo(overlays.gpx);
