@@ -104,20 +104,25 @@ let popup = `
 <h3> ${gpxLayer.get_name()}</h3>
 <ul>
     <li>Streckenlänge ${gpxLayer.get_distance()/1000} m </li>
-    <li>Höchster Punkt: ${gpxLayer.get_elevation_max()} (m)</li>
-    <li>Niedrigster Punkt: ${gpxLayer.get_elevation_min()} (m)</li>
-    <li>Höhenmeter Bergauf: ${gpxLayer.get_elevation_gain().toFixed()} (m)</li>
-    <li>Höhenmeter Bergab: ${gpxLayer.get_elevation_loss().toFixed()} (m)</li>
+    <li>Höchster Punkt: ${gpxLayer.get_elevation_max()} m</li>
+    <li>Niedrigster Punkt: ${gpxLayer.get_elevation_min()} m</li>
+    <li>Höhenmeter Bergauf: ${gpxLayer.get_elevation_gain().toFixed()} m</li>
+    <li>Höhenmeter Bergab: ${gpxLayer.get_elevation_loss().toFixed()} m</li>
 
 </ul>
 `;
 gpxLayer.bindPopup(popup);
 });
 
-let elevationControl = L.control.elevation({}).addTo(map);
+let elevationControl = L.control.elevation({
+    time:false,
+    theme:'bike-tirol',
+    elevationDIV: "#profile",
+    height: 200
+
+}).addTo(map);
+
 gpxTrack.on("addline", function(evt) {
 
-    elevationControl.addData(evt.line)
-}
-
-)
+    elevationControl.addData(evt.line);
+});
