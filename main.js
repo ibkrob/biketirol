@@ -87,11 +87,15 @@ marker_options:{
 },
 polyline_options:{
     color:"black",
-    dashArray:[2,5],
+    dashArray:[5,4],
 }
 
 }).addTo(overlays.gpx);
 
+gpxTrack.on("loaded", function (evt){
+    //console.log ("loaded gpx event: ", evt);
+    map.fitBounds(evt.target.getBounds())
+})
 
 /*new L.GPX(gpx, {
     async: true
