@@ -76,7 +76,7 @@ overlays.gpx.addTo(map);
 
 
 // GPX Track Layer implementieren
-let gpxTrack = new L.GPX("../data/gps-daten-etappe-14-westendorf-alpbach.gpx", {
+let gpxTrack = new L.GPX("./data/gps-daten-etappe-14-westendorf-alpbach.gpx", {
 async: true,
 marker_options:{
     startIconUrl:'icons/start.png',
